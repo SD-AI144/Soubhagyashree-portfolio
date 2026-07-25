@@ -24,7 +24,7 @@ a{ color:inherit; text-decoration:none; }
 /* ============ PERSISTENT PORTRAIT BACKGROUND ============ */
 .bg-portrait{
   position:fixed;
-  left:0; bottom:-60px;
+  left:0; bottom:-100px;
   
   width:34vw;
   max-width:480px;
@@ -67,6 +67,7 @@ nav a:hover{ color:var(--gold); }
   height: 180px;
   border-radius: 50%;
   border: 2px solid var(--gold);
+  margin-top: 100px;
   margin-bottom: 1.6rem;
   right: 65%;
   top: 50%;
