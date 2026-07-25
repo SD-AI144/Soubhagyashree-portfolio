@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- fixed, persists behind every section as the page scrolls -->
   <div class="bg-portrait" aria-hidden="true"></div>
 
   <div class="site">
@@ -18,30 +17,32 @@
       <a href="#legaltech">LegalTech Systems</a>
       <a href="#learning">Learning Repository</a>
       <a href="#experience">Experience</a>
+      <a href="https://www.linkedin.com/in/soubhagyashree/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/SD-AI144" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
     <section class="section hero">
+      <img class="hero-photo" src="assets/photo.jpg" alt="Soubhagyashree Das">
       <span class="eyebrow">Portfolio</span>
       <h1>Soubhagyashree Das</h1>
       <p class="role">Legal System Architect, Privacy Researcher &amp; Visual Artist</p>
       <p>I view law as structure, code as logic, and art as human expression. As a fresh law graduate specialising in Data Protection, Privacy, and LegalTech, I bridge the gap between regulatory compliance and modern digital systems.</p>
       <div class="links">
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/soubhagyashree/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/SD-AI144" target="_blank" rel="noopener">GitHub</a>
       </div>
     </section>
 
     <section class="section pillars" id="pillars">
-      <div class="pillar" data-tone="1" id="legaltech">
+      <div class="pillar" data-tone="1" data-target="expansion-legaltech" id="legaltech">
         <div class="reveal"></div>
         <div class="content">
           <span class="num">01</span>
           <h2>LegalTech Systems</h2>
-          <p>ArgLex, the DPDP compliance simulator, and what's next.</p>
+          <p>ArgLex, the DPDP compliance simulator, document-triage automation.</p>
         </div>
       </div>
-      <div class="pillar" data-tone="2" id="learning">
+      <div class="pillar" data-tone="2" data-target="expansion-learning" id="learning">
         <div class="reveal"></div>
         <div class="content">
           <span class="num">02</span>
@@ -49,15 +50,201 @@
           <p>Articles, certificates and drafts.</p>
         </div>
       </div>
-      <div class="pillar" data-tone="3" id="experience">
+      <div class="pillar" data-tone="3" data-target="expansion-experience" id="experience">
         <div class="reveal"></div>
         <div class="content">
           <span class="num">03</span>
           <h2>Experience</h2>
-          <p>Internships across legaltech, arbitration, corporate and litigation.</p>
+          <p>Seven internships across legaltech, litigation, arbitration and prosecution.</p>
         </div>
       </div>
     </section>
+
+    <!-- ========== LEGALTECH SYSTEMS ========== -->
+    <div class="expansion" id="expansion-legaltech">
+      <div class="expansion-inner">
+        <div class="expansion-panel">
+          <div class="expansion-head">
+            <span>LegalTech Systems — 01</span>
+            <button class="close-btn">Close ×</button>
+          </div>
+          <div class="stack">
+
+            <div class="card with-map">
+              <div>
+                <div class="card-head">
+                  <h3>ArgLex — Argument-Level Legal Retrieval System</h3>
+                  <a class="gh" href="https://github.com/SD-AI144" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
+                <div class="meta">2025–2026</div>
+                <div class="tags"><span class="tag">Retrieval-Only</span><span class="tag">Legal AI</span><span class="tag">SSRN Publication</span></div>
+                <div class="field"><div class="label">Problem</div><p>Case-law databases return full-case dumps; an advocate mid-brief needs the specific argument, not the whole decision.</p></div>
+                <div class="field"><div class="label">Output</div><p>A publicly deployed retrieval tool built on 99 manually curated arguments across 16 Supreme Court decisions, using a multi-layer pipeline combining semantic search with a legal-domain model trained on 5.4M Indian legal documents. Deliberately retrieval-only — no generative output — to preserve advocate judgment and remove hallucination risk.</p></div>
+                <div class="field"><div class="label">Next</div><p>Expanding corpus coverage and refining retrieval precision against advocate feedback.</p></div>
+                <div class="field"><div class="label">Publication</div><p>"Beyond the Hallucination: Building a 'Retrieval-Only' Future for Indian Legal Tech" — SSRN, Apr 2026.</p></div>
+              </div>
+              <div class="map-box">
+                <div class="label">Thought process</div>
+                <div class="flow">
+                  <span class="node">Gap: full-case dumps vs. argument-level need</span><span class="arrow">→</span>
+                  <span class="node">99 arguments curated, 16 SC decisions</span><span class="arrow">→</span>
+                  <span class="node">Semantic search + domain model (5.4M docs)</span><span class="arrow">→</span>
+                  <span class="node">Retrieval-only output, no generation</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card with-map">
+              <div>
+                <div class="card-head">
+                  <h3>DPDP-Compliance-Engine-Simulator</h3>
+                  <a class="gh" href="https://github.com/SD-AI144" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
+                <div class="meta">Independent proof-of-concept</div>
+                <div class="tags"><span class="tag">DPDP Act</span><span class="tag">FastAPI</span><span class="tag">Data Protection</span></div>
+                <div class="field"><div class="label">Problem</div><p>A data-erasure request under Section 6(4) of the DPDP Act, 2023 can directly conflict with statutory retention mandates under the PMLA, CGST Act, and Companies Act — with no clear resolution logic.</p></div>
+                <div class="field"><div class="label">Output</div><p>A FastAPI service modelling that cross-statute conflict as an explicit decision tree (10 passing tests), deciding whether a record should be hard-deleted, declined, or preserved with targeted pseudonymization.</p></div>
+                <div class="field"><div class="label">Next</div><p>Statutory citations are currently flagged in-repo as undergoing primary-source verification — treated deliberately as a PoC, not a compliance product, until that verification is complete.</p></div>
+              </div>
+              <div class="map-box">
+                <div class="label">Thought process</div>
+                <div class="flow">
+                  <span class="node">Erasure request under DPDP §6(4)</span><span class="arrow">→</span>
+                  <span class="node">Cross-check PMLA / CGST / Companies Act</span><span class="arrow">→</span>
+                  <span class="node">Decision tree logic</span><span class="arrow">→</span>
+                  <span class="node">Hard-delete / Decline / Pseudonymize</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card with-map">
+              <div>
+                <div class="card-head">
+                  <h3>Document-Triage-Automation</h3>
+                  <a class="gh" href="https://github.com/SD-AI144" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
+                <div class="meta">Built during the VIDUR internship</div>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Rule-Based</span><span class="tag">IBC / MCA / IBBI / RBI / SEBI</span></div>
+                <div class="field"><div class="label">Problem</div><p>Manually scanning incoming judgments to decide what belongs in a compliance-intelligence system was slow and inconsistent across IBC, MCA, IBBI, RBI, and SEBI matters.</p></div>
+                <div class="field"><div class="label">Output</div><p>A rule-based script that scans judgments for recurring keyword patterns, flags image-only files as needing OCR, and outputs matched-keyword metadata to Excel for review.</p></div>
+              </div>
+              <div class="map-box">
+                <div class="label">Thought process</div>
+                <div class="flow">
+                  <span class="node">Incoming judgments across 5 regulators</span><span class="arrow">→</span>
+                  <span class="node">Keyword pattern matching</span><span class="arrow">→</span>
+                  <span class="node">Flag image-only files for OCR</span><span class="arrow">→</span>
+                  <span class="node">Review-ready Excel output</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== LEARNING REPOSITORY ========== -->
+    <div class="expansion" id="expansion-learning">
+      <div class="expansion-inner">
+        <div class="expansion-panel">
+          <div class="expansion-head">
+            <span>Learning Repository — 02</span>
+            <button class="close-btn">Close ×</button>
+          </div>
+
+          <div class="subhead">Certificates</div>
+          <div class="stack">
+            <div class="card"><div><h3>Harvey AI — AI for Legal Basics</h3><div class="meta">Jul 2026</div></div></div>
+            <div class="card"><div><h3>Harvey AI — AI Analysis for Legal Workflows</h3><div class="meta">Jul 2026</div></div></div>
+            <div class="card"><div><h3>Latham &amp; Watkins — Data &amp; Technology Transactions Job Simulation</h3><div class="meta">Forage, 2026</div><p style="margin-top:0.6rem;">Redlined terms of service; flagged data and liability risk.</p></div></div>
+            <div class="card"><div><h3>DLA Piper — Global Cyber &amp; Data Privacy Job Simulation</h3><div class="meta">Forage, 2026</div><p style="margin-top:0.6rem;">Advised on GDPR obligations and ransom-payment risk.</p></div></div>
+          </div>
+
+          <div class="subhead">Articles</div>
+          <div class="empty-slot">Add your first article here — title, publication/date, link.</div>
+
+          <div class="subhead">Drafts &amp; Samples</div>
+          <div class="empty-slot">Add drafts or writing samples here as you're ready to share them.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <div class="expansion" id="expansion-experience">
+      <div class="expansion-inner">
+        <div class="expansion-panel">
+          <div class="expansion-head">
+            <span>Experience — 03</span>
+            <button class="close-btn">Close ×</button>
+          </div>
+          <div class="stack">
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal &amp; Product Intern (Paid)</h3></div>
+                <div class="meta">VIDUR – KonProz Tech Pvt. Ltd. · Jun–Jul 2025</div>
+                <ul>
+                  <li>Read ~50 judgments to identify keyword patterns for a compliance-intelligence system; built the Python script behind Document-Triage-Automation.</li>
+                  <li>Monitored 10+ weekly regulatory updates across 7 government bodies; ran 30+ dashboard uploads at 100% accuracy, covering a senior associate's workload during extended leave.</li>
+                  <li>Sat in on QA cycles for an AI legal-research product and fed back UX issues the product team acted on.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern</h3></div>
+                <div class="meta">Office of Adv. R.M. Patnaik, Supreme Court of India · Dec 2025–Feb 2026</div>
+                <ul><li>Drafted writ petitions, legal notices, and written submissions across ~10 concurrent civil matters.</li></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern (Paid, ongoing)</h3></div>
+                <div class="meta">Office of Adv. Swarup Kumar Patnaik, High Court of Odisha · Jan 2023–2026</div>
+                <ul><li>Drafted pleadings, applications, replies, and affidavits across civil matters at trial and appellate stages; attended ~50 hearings over 3 years.</li></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern</h3></div>
+                <div class="meta">National Aluminum Company Ltd. (NALCO) — Legal &amp; CSR · May–Jun 2024</div>
+                <ul><li>Reviewed ~10 contracts and drafted 10+ case summaries on arbitration disputes and CSR obligations under Schedule VII, Companies Act, 2013.</li></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern</h3></div>
+                <div class="meta">Odisha Arbitration &amp; Mediation Center · Dec 2024–Jan 2025</div>
+                <ul><li>Researched arbitration enforcement under UNCITRAL/ICC/SIAC.</li></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern</h3></div>
+                <div class="meta">Office of the Director of Public Prosecutor, Odisha · Jan–Feb 2024</div>
+                <ul><li>Researched criminal matters under NDPS, POCSO, IPC, CrPC; produced 30+ research notes and trial briefs.</li></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="card-head"><h3>Legal Intern</h3></div>
+                <div class="meta">SODA, Mayurbhanj</div>
+                <div class="empty-slot" style="margin-top:0.8rem;">Add dates and a line on what you worked on here.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>
