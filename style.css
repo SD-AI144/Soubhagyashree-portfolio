@@ -1,317 +1,140 @@
-:root {
-  /* Site Theme Colors - Keeping your premium palette */
-  --ink-950: #0c0b0e;
-  --ink-800: #1a171c;
-  --ink-700: #26222a;
-  --paper: #ece6dc;
-  --paper-dim: #a8a29a;
-  --gold: #b98a3d;
-  --reveal-1: #d1477a;
-  --reveal-2: #2f9e8f;
-  --reveal-3: #e0a53c;
+:root{
+  --ink-950:#0c0b0e;
+  --ink-800:#1a171c;
+  --ink-700:#26222a;
+  --paper:#ece6dc;
+  --paper-dim:#a8a29a;
+  --gold:#b98a3d;
+  --reveal-1:#d1477a;
+  --reveal-2:#2f9e8f;
+  --reveal-3:#e0a53c;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--ink-950);
+  color:var(--paper);
+  font-family:'Space Grotesk', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{ background:var(--gold); color:var(--ink-950); }
+a{ color:inherit; text-decoration:none; }
+
+/* ============ PERSISTENT PORTRAIT BACKGROUND ============
+   Fixed to the viewport, so it stays put behind every section as
+   the visitor scrolls or moves between anchors ("pages"). Swap the
+   background-image below for your real art export. */
+.bg-portrait{
+  position:fixed;
+  left:0; bottom:0;
+  width:34vw;
+  max-width:480px;
+  height:100vh;
+  background-image:url('background.png');
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  background-size:contain;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.95;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* content sits above the fixed portrait */
+.site{
+  position:relative;
+  z-index:1;
 }
 
-html {
-  scroll-behavior: smooth;
+/* sections get a solid/near-solid backdrop so text stays legible
+   over the fixed art, matching the reference: plain dark ground
+   under the copy, art bleeding only at the left edge */
+.section{
+  background:var(--ink-950);
+  position:relative;
 }
 
-body {
-  background: var(--ink-950);
-  color: var(--paper);
-  font-family: 'Space Grotesk', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+nav{
+  position:sticky; top:0; z-index:2;
+  display:flex; justify-content:flex-end; gap:1.5rem;
+  padding:1.4rem 2rem;
+  background:rgba(12,11,14,0.7);
+  backdrop-filter:blur(6px);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
 }
+nav a{ color:var(--paper-dim); transition:color 200ms ease; }
+nav a:hover{ color:var(--gold); }
 
-::selection {
-  background: var(--gold);
-  color: var(--ink-950);
+/* ---------- HERO ---------- */
+.hero{
+  min-height:90vh;
+  display:flex; flex-direction:column; justify-content:center;
+  max-width:1100px;
+  margin:0 auto;
+  padding:2rem 2rem 4rem 40vw; /* leaves room for the fixed portrait on the left */
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.hero .eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1.2rem; display:block;
 }
-
-/* ========================================================
-   1. FIXED BACKGROUND ARTWORK (LEFT SIDE SPLIT)
-   --------------------------------------------------------
-   - Occupies only the left portion of the screen (50vw).
-   - position: fixed keeps it anchored during scroll.
-   - pointer-events: none ensures clicks PASS THROUGH to
-     content layers (like links) underneath it.
-======================================================== */
-.bg-portrait {
-  position: fixed;
-  top: 0;
-  left: 0; /* Align perfectly to the left */
-  width: 50vw; /* Take up exactly half the viewport width */
-  height: 100vh;
-  background-image: url('background.png'); /* The visual map */
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: cover; /* Maintain image aspect ratio while covering area */
-  z-index: -1;            /* Sent completely to the background layer */
-  pointer-events: none;  /* Allows clicks to pass through to everything else */
-  opacity: 0.70;          /* Distinct visibility, subtle enough to not clash with text */
+.hero h1{
+  font-family:'Fraunces', serif; font-weight:500;
+  font-size:clamp(2.4rem, 5.5vw, 4.4rem);
+  line-height:1.02; letter-spacing:-0.01em; text-transform:uppercase;
 }
-
-/* ========================================================
-   2. SITE CONTENT BASE (RIGHT SIDE SPLIT)
-   --------------------------------------------------------
-   - Acts as the layer 'on top' of the fixed background.
-   - margin-left creates the gap where the artwork sits.
-   - Text "SOUBHAGYASHREE DAS" starts right here.
-======================================================== */
-.site {
-  position: relative;
-  z-index: 1; /* Elevated above the background artwork */
-  margin-left: 50vw; /* Creates the space for the left-side fixed image */
-  width: 50vw;       /* Content takes the right half */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.hero .role{
+  font-family:'Fraunces', serif; font-weight:500;
+  font-size:1.3rem; margin-top:1.6rem; text-transform:uppercase;
 }
-
-/* Navigation links */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: flex-end;
-  gap: 1.5rem;
-  padding: 1.4rem 2rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  /* Adds transparency with blur on desktop nav for clean blend */
-  background: rgba(12, 11, 14, 0.7);
-  backdrop-filter: blur(10px);
+.hero p{
+  max-width:56ch; margin-top:1.1rem; font-size:1rem; line-height:1.6;
+  color:var(--paper-dim);
 }
-
-nav a {
-  color: var(--paper-dim);
-  transition: color 200ms ease;
-  pointer-events: auto; /* Links are fully clickable */
+.hero .links{ margin-top:2rem; display:flex; gap:1rem; }
+.hero .links a{
+  border:1px solid var(--gold); color:var(--gold);
+  font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+  letter-spacing:0.08em; text-transform:uppercase;
+  padding:0.6rem 1.1rem; border-radius:2px;
 }
+.hero .links a:hover{ background:var(--gold); color:var(--ink-950); }
 
-nav a:hover {
-  color: var(--gold);
+/* ---------- PILLARS (unchanged behaviour from prototype) ---------- */
+.pillars{
+  max-width:1100px; margin:0 auto; padding:2rem 2rem 6rem 40vw;
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;
 }
-
-/* ---------- HERO SECTION ---------- */
-.hero {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4rem 2rem 4rem 5vw; /* Left padding aligns content within side split */
+.pillar{
+  position:relative; overflow:hidden;
+  border:1px solid var(--ink-700); border-radius:2px;
+  background:var(--ink-800); min-height:260px; padding:1.8rem 1.5rem;
+  cursor:pointer; isolation:isolate;
 }
-
-.hero .eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.2rem;
-  display: block;
+.pillar .reveal{
+  position:absolute; inset:0; z-index:0; opacity:0; transform:scale(1.06);
+  transition:opacity 550ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
+  mix-blend-mode:screen;
 }
+.pillar[data-tone="1"] .reveal{ background:radial-gradient(circle at 20% 30%, var(--reveal-1) 0%, transparent 55%), radial-gradient(circle at 80% 70%, var(--reveal-3) 0%, transparent 60%); }
+.pillar[data-tone="2"] .reveal{ background:radial-gradient(circle at 75% 20%, var(--reveal-2) 0%, transparent 55%), radial-gradient(circle at 15% 80%, var(--reveal-1) 0%, transparent 60%); }
+.pillar[data-tone="3"] .reveal{ background:radial-gradient(circle at 30% 80%, var(--reveal-3) 0%, transparent 55%), radial-gradient(circle at 80% 10%, var(--reveal-1) 0%, transparent 55%); }
+.pillar:hover .reveal{ opacity:0.24; transform:scale(1); }
+.pillar:hover{ border-color:var(--gold); }
+.pillar .content{ position:relative; z-index:1; }
+.pillar .num{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--gold); letter-spacing:0.12em; }
+.pillar h2{ font-family:'Fraunces', serif; font-weight:500; font-size:1.4rem; margin-top:0.7rem; text-transform:uppercase; }
+.pillar p{ margin-top:0.8rem; font-size:0.88rem; line-height:1.5; color:var(--paper-dim); }
 
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-.hero .role {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  font-size: 1.3rem;
-  margin-top: 1.6rem;
-  text-transform: uppercase;
-}
-
-.hero p {
-  max-width: 56ch;
-  margin-top: 1.1rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--paper-dim);
-}
-
-/* Hero Action Links (LinkedIn, GitHub) */
-.hero .links {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  position: relative;
-  z-index: 2;
-}
-
-.hero .links a {
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.1rem;
-  border-radius: 2px;
-  pointer-events: auto; /* Fully clickable */
-  transition: all 200ms ease;
-}
-
-.hero .links a:hover {
-  background: var(--gold);
-  color: var(--ink-950);
-}
-
-/* ---------- 3 PILLAR CARDS SECTION ---------- */
-.pillars {
-  padding: 2rem 2rem 6rem 5vw; /* Match hero padding for alignment */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
-/* Clickable Pillar Card Style */
-.pillar {
-  position: relative;
-  display: block; /* Allows card to behave as an <a> tag */
-  overflow: hidden;
-  border: 1px solid var(--ink-700);
-  border-radius: 4px;
-  /* Subtly translucent cards to let background show through when overlapping */
-  background: rgba(18, 18, 22, 0.70);
-  backdrop-filter: blur(6px); /* subtle frosted glass effect */
-  min-height: 260px;
-  padding: 1.8rem 1.5rem;
-  cursor: pointer;
-  isolation: isolate;
-  pointer-events: auto; /* Card content and clicks pass through artwork */
-  transition: border-color 300ms ease, transform 300ms ease;
-}
-
-.pillar .reveal {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 550ms cubic-bezier(.2, .7, .2, 1), transform 900ms cubic-bezier(.2, .7, .2, 1);
-  mix-blend-mode: screen;
-}
-
-.pillar[data-tone="1"] .reveal {
-  background: radial-gradient(circle at 20% 30%, var(--reveal-1) 0%, transparent 55%),
-              radial-gradient(circle at 80% 70%, var(--reveal-3) 0%, transparent 60%);
-}
-
-.pillar[data-tone="2"] .reveal {
-  background: radial-gradient(circle at 75% 20%, var(--reveal-2) 0%, transparent 55%),
-              radial-gradient(circle at 15% 80%, var(--reveal-1) 0%, transparent 60%);
-}
-
-.pillar[data-tone="3"] .reveal {
-  background: radial-gradient(circle at 30% 80%, var(--reveal-3) 0%, transparent 55%),
-              radial-gradient(circle at 80% 10%, var(--reveal-1) 0%, transparent 55%);
-}
-
-.pillar:hover .reveal {
-  opacity: 0.30;
-  transform: scale(1);
-}
-
-.pillar:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px); /* Hover feel */
-}
-
-.pillar .content {
-  position: relative;
-  z-index: 1;
-}
-
-.pillar .num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--gold);
-  letter-spacing: 0.12em;
-}
-
-.pillar h2 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  font-size: 1.4rem;
-  margin-top: 0.7rem;
-  text-transform: uppercase;
-}
-
-.pillar p {
-  margin-top: 0.8rem;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--paper-dim);
-}
-
-/* ========================================================
-   3. RESPONSIVE MOBILE DISPLAY (900px & UNDER)
-   --------------------------------------------------------
-   - Fixes visibility and readability on phones/tablets.
-   - Applies the "Translucent Layer + fixed image" rule.
-======================================================== */
-@media (max-width: 900px) {
-  /* A. FIXED BACKGROUND IMAGE RULE (MOBILE)
-     - Stays fixed, goes full-bleed.
-     - Lower opacity for maximum text readability. */
-  .bg-portrait {
-    width: 100vw;   /* Take full width on mobile */
-    height: 100vh;  /* Take full height */
-    left: 0;
-    right: 0;
-    opacity: 0.35;  /* Significantly lower opacity so text is dominant */
-    z-index: -1;    /* Essential layer order */
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .bg-portrait{
+    width:60vw; max-width:none; height:38vh;
+    left:auto; right:-6vw; bottom:auto; top:0;
+    opacity:0.28;
   }
-
-  /* B. TRANSLUCENT LAYER FOR ALL CONTENT (MOBILE)
-     - Applies the translucent layer *on* which everything sits.
-     - margin-left is removed for single-column layout. */
-  .site {
-    margin-left: 0; /* Remove split layout margin on mobile */
-    width: 100vw;
-    position: relative;
-    z-index: 1;
-
-    /* The core responsive AI behavior: a translucent overlay layer */
-    background: rgba(12, 11, 14, 0.75); /* Dark translucent background fill */
-    backdrop-filter: blur(8px);       /* Subtle frosted glass effect */
-  }
-
-  /* Adjust spacing for smaller screens */
-  .hero {
-    padding: 6rem 1.4rem 3rem;
-  }
-
-  .pillars {
-    padding: 1.5rem 1.4rem 4rem;
-    grid-template-columns: 1fr; /* Single column cards */
-  }
-
-  nav {
-    padding: 1rem 1.4rem;
-    justify-content: center;
-    gap: 1.2rem;
-  }
+  .hero{ padding:6rem 1.4rem 3rem; min-height:auto; }
+  .pillars{ padding:1.5rem 1.4rem 4rem; grid-template-columns:1fr; }
+  nav{ padding:1rem 1.4rem; justify-content:center; gap:1.2rem; }
 }
