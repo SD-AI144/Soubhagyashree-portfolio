@@ -69,7 +69,7 @@ nav a:hover{ color:var(--gold); }
   margin-bottom: 1.6rem;
   
   /* Link your image file here */
-  background-image: url('photo.png');
+  background-image: url('photo.jpg');
   background-size: cover;
   background-position: center;
 }
