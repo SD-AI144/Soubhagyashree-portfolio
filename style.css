@@ -35,9 +35,9 @@ a{ color:inherit; text-decoration:none; }
   background-repeat:no-repeat;
   background-position:left bottom;
   background-size:contain;
-  z-index:0;
+  z-index:-1;
   pointer-events:none;
-  opacity:0.95;
+  opacity:0.45;
 }
 
 /* content sits above the fixed portrait */
@@ -46,12 +46,11 @@ a{ color:inherit; text-decoration:none; }
   z-index:1;
 }
 
-/* sections get a solid/near-solid backdrop so text stays legible
-   over the fixed art, matching the reference: plain dark ground
-   under the copy, art bleeding only at the left edge */
+/* Make sections translucent so background artwork shows through */
 .section{
-  background:var(--ink-950);
-  position:relative;
+  background: rgba(12, 11, 14, 0.82); /* Semi-transparent background */
+  backdrop-filter: blur(4px); /* Optional: subtle blur effect */
+  position: relative;
 }
 
 nav{
