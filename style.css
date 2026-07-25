@@ -28,7 +28,7 @@ a{ color:inherit; text-decoration:none; }
   width:34vw;
   max-width:480px;
   height:100vh;
-  background-image:url('assets/portrait.png');
+  background-image:url('background.png');
   background-repeat:no-repeat;
   background-position:left bottom;
   background-size:contain;
@@ -61,11 +61,17 @@ nav a:hover{ color:var(--gold); }
   padding:3rem 2rem 3rem 40vw;
   position:relative;
 }
-.hero-photo{
-  width:120px; height:120px; border-radius:50%;
-  object-fit:cover;
-  border:2px solid var(--gold);
-  margin-bottom:1.6rem;
+.hero-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  margin-bottom: 1.6rem;
+  
+  /* Link your image file here */
+  background-image: url('photo.png');
+  background-size: cover;
+  background-position: center;
 }
 .hero .eyebrow{
   font-family:'IBM Plex Mono', monospace;
