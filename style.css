@@ -108,8 +108,11 @@ nav a:hover{ color:var(--gold); }
 .pillar{
   position:relative; overflow:hidden;
   border:1px solid var(--ink-700); border-radius:2px;
-  background:var(--ink-800); min-height:260px; padding:1.8rem 1.5rem;
-  cursor:pointer; isolation:isolate;
+  background: rgba(18, 18, 22, 0.75); /* Translucent fill so background shows through */
+  min-height: 260px;
+  padding: 1.8rem 1.5rem;
+  cursor: pointer;
+  isolation: isolate;
 }
 .pillar .reveal{
   position:absolute; inset:0; z-index:0; opacity:0; transform:scale(1.06);
@@ -128,10 +131,17 @@ nav a:hover{ color:var(--gold); }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:900px){
-  .bg-portrait{
-    width:60vw; max-width:none; height:38vh;
-    left:auto; right:-6vw; bottom:auto; top:0;
-    opacity:0.28;
+  .bg-portrait {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.50; /* Make image clearly visible across all screen sizes */
+    z-index: -1;
   }
   .hero{ padding:6rem 1.4rem 3rem; min-height:auto; }
   .pillars{ padding:1.5rem 1.4rem 4rem; grid-template-columns:1fr; }
