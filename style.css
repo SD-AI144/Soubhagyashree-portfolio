@@ -24,7 +24,8 @@ a{ color:inherit; text-decoration:none; }
 /* ============ PERSISTENT PORTRAIT BACKGROUND ============ */
 .bg-portrait{
   position:fixed;
-  left:0; bottom:0;
+  left:0; bottom:-60px;
+  
   width:34vw;
   max-width:480px;
   height:100vh;
@@ -62,11 +63,15 @@ nav a:hover{ color:var(--gold); }
   position:relative;
 }
 .hero-photo {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 2px solid var(--gold);
   margin-bottom: 1.6rem;
+  position: absolute;
+  right: 5%
+  top: 50%;
+  transform: translateY(-50%);
   
   /* Link your image file here */
   background-image: url('photo.jpg');
