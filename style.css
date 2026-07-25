@@ -1,149 +1,277 @@
-:root{
-  --ink-950:#0c0b0e;
-  --ink-800:#1a171c;
-  --ink-700:#26222a;
-  --paper:#ece6dc;
-  --paper-dim:#a8a29a;
-  --gold:#b98a3d;
-  --reveal-1:#d1477a;
-  --reveal-2:#2f9e8f;
-  --reveal-3:#e0a53c;
-}
-*{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; }
-body{
-  background:var(--ink-950);
-  color:var(--paper);
-  font-family:'Space Grotesk', sans-serif;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-::selection{ background:var(--gold); color:var(--ink-950); }
-a{ color:inherit; text-decoration:none; }
-
-/* ============ PERSISTENT PORTRAIT BACKGROUND ============
-   Fixed to the viewport, so it stays put behind every section as
-   the visitor scrolls or moves between anchors ("pages"). Swap the
-   background-image below for your real art export. */
-.bg-portrait{
-  position:fixed;
-  left:0; bottom:0;
-  width:34vw;
-  max-width:480px;
-  height:100vh;
-  background-image:url('background.png');
-  background-repeat:no-repeat;
-  background-position:left bottom;
-  background-size:contain;
-  z-index:-1;
-  pointer-events:none;
-  opacity:0.45;
+:root {
+  --ink-950: #0c0b0e;
+  --ink-800: #1a171c;
+  --ink-700: #26222a;
+  --paper: #ece6dc;
+  --paper-dim: #a8a29a;
+  --gold: #b98a3d;
+  --reveal-1: #d1477a;
+  --reveal-2: #2f9e8f;
+  --reveal-3: #e0a53c;
 }
 
-/* content sits above the fixed portrait */
-.site{
-  position:relative;
-  z-index:1;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Make sections translucent so background artwork shows through */
-.section{
-  background: rgba(12, 11, 14, 0.82); /* Semi-transparent background */
-  backdrop-filter: blur(4px); /* Optional: subtle blur effect */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink-950);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink-950);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============ FIXED BACKGROUND ARTWORK ============ */
+.bg-portrait {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  max-width: 750px;
+  height: 100vh;
+  background-image: url('background.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  z-index: -1;            /* Sits behind all content */
+  pointer-events: none;  /* Allows clicks to pass through to links below */
+  opacity: 0.55;          /* Artwork visible without reducing text clarity */
+}
+
+/* Base site container above background */
+.site {
   position: relative;
+  z-index: 1;
 }
 
-nav{
-  position:sticky; top:0; z-index:2;
-  display:flex; justify-content:flex-end; gap:1.5rem;
-  padding:1.4rem 2rem;
-  background:rgba(12,11,14,0.7);
-  backdrop-filter:blur(6px);
-  font-family:'IBM Plex Mono', monospace;
-  font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+/* Navigation links */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding: 1.4rem 2rem;
+  background: rgba(12, 11, 14, 0.7);
+  backdrop-filter: blur(8px);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
-nav a{ color:var(--paper-dim); transition:color 200ms ease; }
-nav a:hover{ color:var(--gold); }
 
-/* ---------- HERO ---------- */
-.hero{
-  min-height:90vh;
-  display:flex; flex-direction:column; justify-content:center;
-  max-width:1100px;
-  margin:0 auto;
-  padding:2rem 2rem 4rem 40vw; /* leaves room for the fixed portrait on the left */
+nav a {
+  color: var(--paper-dim);
+  transition: color 200ms ease;
+  pointer-events: auto; /* Fully clickable */
 }
-.hero .eyebrow{
-  font-family:'IBM Plex Mono', monospace;
-  font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
-  color:var(--gold); margin-bottom:1.2rem; display:block;
-}
-.hero h1{
-  font-family:'Fraunces', serif; font-weight:500;
-  font-size:clamp(2.4rem, 5.5vw, 4.4rem);
-  line-height:1.02; letter-spacing:-0.01em; text-transform:uppercase;
-}
-.hero .role{
-  font-family:'Fraunces', serif; font-weight:500;
-  font-size:1.3rem; margin-top:1.6rem; text-transform:uppercase;
-}
-.hero p{
-  max-width:56ch; margin-top:1.1rem; font-size:1rem; line-height:1.6;
-  color:var(--paper-dim);
-}
-.hero .links{ margin-top:2rem; display:flex; gap:1rem; }
-.hero .links a{
-  border:1px solid var(--gold); color:var(--gold);
-  font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
-  letter-spacing:0.08em; text-transform:uppercase;
-  padding:0.6rem 1.1rem; border-radius:2px;
-}
-.hero .links a:hover{ background:var(--gold); color:var(--ink-950); }
 
-/* ---------- PILLARS (unchanged behaviour from prototype) ---------- */
-.pillars{
-  max-width:1100px; margin:0 auto; padding:2rem 2rem 6rem 40vw;
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem;
+nav a:hover {
+  color: var(--gold);
 }
-.pillar{
-  position:relative; overflow:hidden;
-  border:1px solid var(--ink-700); border-radius:2px;
-  background: rgba(18, 18, 22, 0.75); /* Translucent fill so background shows through */
+
+/* ---------- HERO SECTION ---------- */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem 5vw;
+}
+
+.hero .eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.hero .role {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-top: 1.6rem;
+  text-transform: uppercase;
+}
+
+.hero p {
+  max-width: 56ch;
+  margin-top: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--paper-dim);
+}
+
+/* Hero Action Links (LinkedIn, GitHub) */
+.hero .links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero .links a {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  border-radius: 2px;
+  pointer-events: auto; /* Fully clickable */
+  transition: all 200ms ease;
+}
+
+.hero .links a:hover {
+  background: var(--gold);
+  color: var(--ink-950);
+}
+
+/* ---------- 3 PILLAR CARDS SECTION ---------- */
+.pillars {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 6rem 5vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* Clickable Pillar Card Style */
+.pillar {
+  position: relative;
+  display: block; /* Allows card to behave as an <a> tag */
+  overflow: hidden;
+  border: 1px solid var(--ink-700);
+  border-radius: 4px;
+  background: rgba(18, 18, 22, 0.70); /* Translucent so background shows through */
+  backdrop-filter: blur(6px);
   min-height: 260px;
   padding: 1.8rem 1.5rem;
-  cursor: pointer;
+  cursor: pointer; /* Pointer cursor for clickability */
   isolation: isolate;
+  pointer-events: auto; /* Fully clickable */
+  transition: border-color 300ms ease, transform 300ms ease;
 }
-.pillar .reveal{
-  position:absolute; inset:0; z-index:0; opacity:0; transform:scale(1.06);
-  transition:opacity 550ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
-  mix-blend-mode:screen;
-}
-.pillar[data-tone="1"] .reveal{ background:radial-gradient(circle at 20% 30%, var(--reveal-1) 0%, transparent 55%), radial-gradient(circle at 80% 70%, var(--reveal-3) 0%, transparent 60%); }
-.pillar[data-tone="2"] .reveal{ background:radial-gradient(circle at 75% 20%, var(--reveal-2) 0%, transparent 55%), radial-gradient(circle at 15% 80%, var(--reveal-1) 0%, transparent 60%); }
-.pillar[data-tone="3"] .reveal{ background:radial-gradient(circle at 30% 80%, var(--reveal-3) 0%, transparent 55%), radial-gradient(circle at 80% 10%, var(--reveal-1) 0%, transparent 55%); }
-.pillar:hover .reveal{ opacity:0.24; transform:scale(1); }
-.pillar:hover{ border-color:var(--gold); }
-.pillar .content{ position:relative; z-index:1; }
-.pillar .num{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--gold); letter-spacing:0.12em; }
-.pillar h2{ font-family:'Fraunces', serif; font-weight:500; font-size:1.4rem; margin-top:0.7rem; text-transform:uppercase; }
-.pillar p{ margin-top:0.8rem; font-size:0.88rem; line-height:1.5; color:var(--paper-dim); }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width:900px){
+.pillar .reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 550ms cubic-bezier(.2, .7, .2, 1), transform 900ms cubic-bezier(.2, .7, .2, 1);
+  mix-blend-mode: screen;
+}
+
+.pillar[data-tone="1"] .reveal {
+  background: radial-gradient(circle at 20% 30%, var(--reveal-1) 0%, transparent 55%),
+              radial-gradient(circle at 80% 70%, var(--reveal-3) 0%, transparent 60%);
+}
+
+.pillar[data-tone="2"] .reveal {
+  background: radial-gradient(circle at 75% 20%, var(--reveal-2) 0%, transparent 55%),
+              radial-gradient(circle at 15% 80%, var(--reveal-1) 0%, transparent 60%);
+}
+
+.pillar[data-tone="3"] .reveal {
+  background: radial-gradient(circle at 30% 80%, var(--reveal-3) 0%, transparent 55%),
+              radial-gradient(circle at 80% 10%, var(--reveal-1) 0%, transparent 55%);
+}
+
+.pillar:hover .reveal {
+  opacity: 0.30;
+  transform: scale(1);
+}
+
+.pillar:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px); /* Hover feel */
+}
+
+.pillar .content {
+  position: relative;
+  z-index: 1;
+}
+
+.pillar .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+
+.pillar h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-top: 0.7rem;
+  text-transform: uppercase;
+}
+
+.pillar p {
+  margin-top: 0.8rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--paper-dim);
+}
+
+/* ---------- RESPONSIVE MOBILE DISPLAY ---------- */
+@media (max-width: 900px) {
   .bg-portrait {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('background.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.50; /* Make image clearly visible across all screen sizes */
-    z-index: -1;
+    opacity: 0.35;
+    right: 0;
+    left: 0;
   }
-  .hero{ padding:6rem 1.4rem 3rem; min-height:auto; }
-  .pillars{ padding:1.5rem 1.4rem 4rem; grid-template-columns:1fr; }
-  nav{ padding:1rem 1.4rem; justify-content:center; gap:1.2rem; }
+
+  .hero {
+    padding: 5rem 1.4rem 3rem;
+  }
+
+  .pillars {
+    padding: 1.5rem 1.4rem 4rem;
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    padding: 1rem 1.4rem;
+    justify-content: center;
+    gap: 1.2rem;
+  }
 }
