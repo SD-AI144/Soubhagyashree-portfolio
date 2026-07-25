@@ -1,4 +1,5 @@
 :root {
+  /* Site Theme Colors - Keeping your premium palette */
   --ink-950: #0c0b0e;
   --ink-800: #1a171c;
   --ink-700: #26222a;
@@ -38,27 +39,44 @@ a {
   text-decoration: none;
 }
 
-/* ============ FIXED BACKGROUND ARTWORK ============ */
+/* ========================================================
+   1. FIXED BACKGROUND ARTWORK (LEFT SIDE SPLIT)
+   --------------------------------------------------------
+   - Occupies only the left portion of the screen (50vw).
+   - position: fixed keeps it anchored during scroll.
+   - pointer-events: none ensures clicks PASS THROUGH to
+     content layers (like links) underneath it.
+======================================================== */
 .bg-portrait {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 50vw;
-  max-width: 750px;
+  left: 0; /* Align perfectly to the left */
+  width: 50vw; /* Take up exactly half the viewport width */
   height: 100vh;
-  background-image: url('background.png');
+  background-image: url('background.png'); /* The visual map */
   background-repeat: no-repeat;
-  background-position: right center;
-  background-size: cover;
-  z-index: -1;            /* Sits behind all content */
-  pointer-events: none;  /* Allows clicks to pass through to links below */
-  opacity: 0.55;          /* Artwork visible without reducing text clarity */
+  background-position: left center;
+  background-size: cover; /* Maintain image aspect ratio while covering area */
+  z-index: -1;            /* Sent completely to the background layer */
+  pointer-events: none;  /* Allows clicks to pass through to everything else */
+  opacity: 0.70;          /* Distinct visibility, subtle enough to not clash with text */
 }
 
-/* Base site container above background */
+/* ========================================================
+   2. SITE CONTENT BASE (RIGHT SIDE SPLIT)
+   --------------------------------------------------------
+   - Acts as the layer 'on top' of the fixed background.
+   - margin-left creates the gap where the artwork sits.
+   - Text "SOUBHAGYASHREE DAS" starts right here.
+======================================================== */
 .site {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Elevated above the background artwork */
+  margin-left: 50vw; /* Creates the space for the left-side fixed image */
+  width: 50vw;       /* Content takes the right half */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Navigation links */
@@ -70,18 +88,19 @@ nav {
   justify-content: flex-end;
   gap: 1.5rem;
   padding: 1.4rem 2rem;
-  background: rgba(12, 11, 14, 0.7);
-  backdrop-filter: blur(8px);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  /* Adds transparency with blur on desktop nav for clean blend */
+  background: rgba(12, 11, 14, 0.7);
+  backdrop-filter: blur(10px);
 }
 
 nav a {
   color: var(--paper-dim);
   transition: color 200ms ease;
-  pointer-events: auto; /* Fully clickable */
+  pointer-events: auto; /* Links are fully clickable */
 }
 
 nav a:hover {
@@ -90,13 +109,11 @@ nav a:hover {
 
 /* ---------- HERO SECTION ---------- */
 .hero {
-  min-height: 85vh;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 2rem 4rem 5vw;
+  padding: 4rem 2rem 4rem 5vw; /* Left padding aligns content within side split */
 }
 
 .hero .eyebrow {
@@ -163,9 +180,7 @@ nav a:hover {
 
 /* ---------- 3 PILLAR CARDS SECTION ---------- */
 .pillars {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 2rem 6rem 5vw;
+  padding: 2rem 2rem 6rem 5vw; /* Match hero padding for alignment */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
@@ -178,13 +193,14 @@ nav a:hover {
   overflow: hidden;
   border: 1px solid var(--ink-700);
   border-radius: 4px;
-  background: rgba(18, 18, 22, 0.70); /* Translucent so background shows through */
-  backdrop-filter: blur(6px);
+  /* Subtly translucent cards to let background show through when overlapping */
+  background: rgba(18, 18, 22, 0.70);
+  backdrop-filter: blur(6px); /* subtle frosted glass effect */
   min-height: 260px;
   padding: 1.8rem 1.5rem;
-  cursor: pointer; /* Pointer cursor for clickability */
+  cursor: pointer;
   isolation: isolate;
-  pointer-events: auto; /* Fully clickable */
+  pointer-events: auto; /* Card content and clicks pass through artwork */
   transition: border-color 300ms ease, transform 300ms ease;
 }
 
@@ -250,23 +266,47 @@ nav a:hover {
   color: var(--paper-dim);
 }
 
-/* ---------- RESPONSIVE MOBILE DISPLAY ---------- */
+/* ========================================================
+   3. RESPONSIVE MOBILE DISPLAY (900px & UNDER)
+   --------------------------------------------------------
+   - Fixes visibility and readability on phones/tablets.
+   - Applies the "Translucent Layer + fixed image" rule.
+======================================================== */
 @media (max-width: 900px) {
+  /* A. FIXED BACKGROUND IMAGE RULE (MOBILE)
+     - Stays fixed, goes full-bleed.
+     - Lower opacity for maximum text readability. */
   .bg-portrait {
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.35;
-    right: 0;
+    width: 100vw;   /* Take full width on mobile */
+    height: 100vh;  /* Take full height */
     left: 0;
+    right: 0;
+    opacity: 0.35;  /* Significantly lower opacity so text is dominant */
+    z-index: -1;    /* Essential layer order */
   }
 
+  /* B. TRANSLUCENT LAYER FOR ALL CONTENT (MOBILE)
+     - Applies the translucent layer *on* which everything sits.
+     - margin-left is removed for single-column layout. */
+  .site {
+    margin-left: 0; /* Remove split layout margin on mobile */
+    width: 100vw;
+    position: relative;
+    z-index: 1;
+
+    /* The core responsive AI behavior: a translucent overlay layer */
+    background: rgba(12, 11, 14, 0.75); /* Dark translucent background fill */
+    backdrop-filter: blur(8px);       /* Subtle frosted glass effect */
+  }
+
+  /* Adjust spacing for smaller screens */
   .hero {
-    padding: 5rem 1.4rem 3rem;
+    padding: 6rem 1.4rem 3rem;
   }
 
   .pillars {
     padding: 1.5rem 1.4rem 4rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column cards */
   }
 
   nav {
