@@ -1,0 +1,15 @@
+{
+  "name": "soubhagyashree-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint": "echo 'No lint script'",
+    "build": "echo 'No build step required for static site'"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pdfkit": "^0.19.1"
+  }
+}
