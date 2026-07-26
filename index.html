@@ -68,8 +68,31 @@
             <span>LegalTech Systems — 01</span>
             <button class="close-btn">Close ×</button>
           </div>
-          <div class="stack">
+          <!-- LEVEL 1: all three systems, side by side -->
+          <div class="systems-row" id="systems-row">
+            <div class="system-mini" data-system="arglex">
+              <span class="num">01</span>
+              <h3>ArgLex</h3>
+              <p>Argument-level legal retrieval system, retrieval-only by design.</p>
+              <div class="open-tag">Open project →</div>
+            </div>
+            <div class="system-mini" data-system="dpdp">
+              <span class="num">02</span>
+              <h3>DPDP-Compliance-Engine-Simulator</h3>
+              <p>Models cross-statute conflict under the DPDP Act as a decision tree.</p>
+              <div class="open-tag">Open project →</div>
+            </div>
+            <div class="system-mini" data-system="triage">
+              <span class="num">03</span>
+              <h3>Document-Triage-Automation</h3>
+              <p>Rule-based script built during the VIDUR internship.</p>
+              <div class="open-tag">Open project →</div>
+            </div>
+          </div>
 
+          <!-- LEVEL 2: individual project detail, one shown at a time -->
+          <div class="system-detail" id="detail-arglex">
+            <div class="back-link">← Back to systems</div>
             <div class="card with-map">
               <div>
                 <div class="card-head">
@@ -93,7 +116,10 @@
                 </div>
               </div>
             </div>
+          </div>
 
+          <div class="system-detail" id="detail-dpdp">
+            <div class="back-link">← Back to systems</div>
             <div class="card with-map">
               <div>
                 <div class="card-head">
@@ -116,7 +142,10 @@
                 </div>
               </div>
             </div>
+          </div>
 
+          <div class="system-detail" id="detail-triage">
+            <div class="back-link">← Back to systems</div>
             <div class="card with-map">
               <div>
                 <div class="card-head">
@@ -138,8 +167,8 @@
                 </div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
